@@ -27,7 +27,7 @@ This project implements a Binomial Tree model for pricing options in Python. It 
 
 1. Clone the repository:
 ```bash
-git clone [https://github.com/JacekKozlowskii/binomial_option_pricing_model.git](https://github.com/JacekKozlowskii/binomial_option_pricing_model.git)
+git clone https://github.com/JacekKozlowskii/binomial_option_pricing_model.git
 cd binomial_option_pricing_model
 ```
 2. Run the script (this will return calculations for an example option):
