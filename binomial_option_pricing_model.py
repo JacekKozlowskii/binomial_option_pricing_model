@@ -112,7 +112,7 @@ def price_option(
     # See README section 3.2.
     k = math.ceil(steps / 2 - (math.log(strike / spot if side == 1 else spot / strike)) / (2 * diffusion))
     # Cap the index at the number of steps (if k > steps, all nodes are in the money)
-    k = min(steps, k)
+    k = min(steps + 1, k)
 
     # If k is less than or equal to zero, the option never reaches the strike price
     if k <= 0:
@@ -142,7 +142,7 @@ def price_option(
             # Puts are deepest in-the-money at low prices
             node_spot = spot * (d ** i)
 
-            for j in range(min(i + 1, k + 1)):
+            for j in range(min(i + 1, k)):
                 # Expected value
                 expected_payoff = df * (p * payoffs[j + 1] + q * payoffs[j])
 
