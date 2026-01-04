@@ -16,7 +16,7 @@ This project implements a Binomial Tree model for pricing options in Python. It 
 
 ## Setup
 
----
+
 
 ### Prerequisites
 - Python 3.10+: _recommended_, the code uses union type hints (e.g. ```int | float```).
@@ -45,7 +45,7 @@ from binomial_option_pricing_model import price_option
 
 ## Code Overview
 
----
+
 
 The core function, `price_option`, calculates the fair value of an option using a binomial tree model.
 
@@ -71,7 +71,7 @@ The function returns a tuple containing:
 
 ## Optimization
 
----
+
 
 The code uses a few optimization techniques to avoid a nested-loop binomial tree implementation.
 Below are explanations of the specific optimizations noted in the comments.
