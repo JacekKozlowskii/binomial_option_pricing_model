@@ -108,9 +108,6 @@ def price_option(
     # Initialize payoff list
     payoffs = [0.0] * (steps + 1)
 
-    # Calculate the most extreme terminal price based on option side
-    curr_spot = spot * (u ** steps if side == 1 else d ** steps)
-
     # Calculate the index of the terminal node at which the option becomes worthless.
     # See README section 3.2.
     k = math.ceil(steps / 2 - (math.log(strike / spot if side == 1 else spot / strike)) / (2 * diffusion))
@@ -119,7 +116,10 @@ def price_option(
 
     # If k is less than or equal to zero, the option never reaches the strike price
     if k <= 0:
-        return 0.0, time.time() - start , considered_steps
+        return 0.0, time.time() - start, considered_steps
+
+    # Calculate the most extreme terminal price based on option side
+    curr_spot = spot * (u ** steps if side == 1 else d ** steps)
 
     # Calculate terminal payoffs
     for i in range(k):
