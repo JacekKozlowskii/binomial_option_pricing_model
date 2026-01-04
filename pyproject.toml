@@ -1,0 +1,7 @@
+[project]
+name = "binomial-option-pricing-model"
+version = "0.1.0"
+description = "This project implements a Binomial Tree model for pricing options in Python. It supports both European and American options (calls and puts)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
