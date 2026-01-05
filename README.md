@@ -202,7 +202,7 @@ $\Gamma(x) = (x-1)!$, we use $n+1$ as input.
 
 Because payoffs are precomputed, the final price is:
 
-$$f = e^{-rT} \sum_{j=\alpha+1}^{n} \exp(p^*)\,\text{Payoff}_j$$
+$$f = e^{-rT} \sum_{j=\alpha+1}^{n} \exp(p^*)\cdot\text{Payoff}_j$$
 
 This reduces the time complexity from $O(N^2)$ to $O(N)$.
 
