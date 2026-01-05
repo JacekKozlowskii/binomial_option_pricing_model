@@ -137,11 +137,12 @@ $$S_{i,j} - K > S_{i,j} - Ke^{-rt}$$
 $$K < Ke^{-rt}$$
 $$1 \not< e^{-rt}$$
 
-This inequality does not hold, meaning that for any state, the intrinsic value is strictly less than the discounted expected value of the option at the next step. This mean that we can show that starting from $i=n-1$,
-the expected value of next payoffs is greater than current step payoff and as that we have following inequality:
-$$S_{i-1,j}-K < e^{-rt}(p(S_{i-1,j}u-K) + (1-p)(S_{i-1,j}d-K)) \leq f_{i+1}$$
+This inequality does not hold, meaning that for any state, the intrinsic value is strictly less than the discounted expected value of the option at the next step. 
+This means that we can show that starting from $i=n-1$,
+the expected value of next payoffs is greater than the value of exercising the call.  
 
-Thus we never exercise the American call and calculate the price the same way as the European call.
+Thus we it is never optimal to exercise the American call early and we can calculate the price the same way as the European call. 
+This relationship can also be derived from put-call parity.
 
 For **American puts** we can show the following:
 $$K - S_{i,j}>e^{-rt}(p(K - S_{i,j}u) + (1-p)(K - S_{i,j}d))$$
