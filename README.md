@@ -148,10 +148,15 @@ For **American puts** we can show the following:
 $$K - S_{i,j}>e^{-rt}(p(K - S_{i,j}u) + (1-p)(K - S_{i,j}d))$$
 That simplifies to:
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}(pu-(1-p)d))$$
+
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}(\frac{e^{rt}-d}{u-d}u+(1-\frac{e^{rt}-d}{u-d})d))$$
+
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}(\frac{e^{rt}-d}{u-d}u-(\frac{u-d}{u-d}-\frac{e^{rt}-d}{u-d})d))$$
+
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}(\frac{e^{rt}u-ud}{u-d}+\frac{ud-e^{rt}d}{u-d}))$$
+
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}e^{rt})$$
+
 $$1 >e^{-rt}$$
 
 This means that the inequality can hold for American puts.
@@ -161,7 +166,7 @@ This means that the inequality can hold for American puts.
 In cases where full tree induction is unnecessary, the option price is computed as the discounted expected payoff (shown here for calls):
 
 
-$$f = e^{-rT} \sum_{j>\alpha}^{n} \binom{n}{j} p^{n-j} q^{j} \cdot (S_0u^{n-j}d^{j}-K)$$
+$$f = e^{-rT} \sum_{j>\alpha}^{n} \binom{n}{j} p^{n-j} q^{j} \cdot (S_0u^{n-j}d^{j}-K)$$ \
 where $\alpha$ is the previously calculated k-index.
 
 Direct computation of $\binom{n}{j}$ can cause integer overflow, so logarithms are used:
@@ -170,12 +175,14 @@ Direct computation of $\binom{n}{j}$ can cause integer overflow, so logarithms a
 $$\ln(\binom{n}{j}) = \ln(n!) - \ln(j!(n-j)!)= \ln(n!) - \ln(j!) - \ln((n-j)!)$$
 
 As that we take the logarithm of the important parts of expression:
+
 $$p^*=\ln(\sum_{j>\alpha}^{n} \binom{n}{j} p^{n-j} q^{j})= \sum_{j>\alpha}^{n}\ln(\binom{n}{j}) + (n-j)\ln(p) + j\ln(q)$$
 
 We use the log-gamma function (`math.lgamma`) to compute factorial logarithms efficiently. Since
 $\Gamma(x) = (x-1)!$, we use $n+1$ as input.
 
 Because payoffs are precomputed, the final price is:
+
 $$f=e^{-rT}\sum_{j>\alpha}^n\exp(p^*)*(\text{Payoff}_j)$$
 
 This reduces the time complexity from $O(N^2)$ to $O(N)$.
