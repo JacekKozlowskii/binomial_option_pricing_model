@@ -98,14 +98,20 @@ With this method, prices are calculated from the most in-the-money (ITM) to the 
 
 We derive the index at which the option payoff becomes zero and skip all non-valuable outcomes.
 
-**Call**
+**Call**:
+
 $$S_0e^{(n-j)\sigma\sqrt{t}}e^{-j\sigma\sqrt{t}} > K$$
+
 $$e^{n\sigma\sqrt{t}-2j\sigma\sqrt{t}} > \frac{K}{S_0}$$
+
 $$(n-2j)\sigma\sqrt{t}>\ln(\frac{K}{S_0})$$
+
 $$j < \frac{n}{2} - \frac{\ln(\frac{K}{S_0})}{2\sigma\sqrt{t}}$$
 
-**Put**
+**Put**:
+
 $$S_0e^{(i)\sigma\sqrt{t}}e^{-(n-i)\sigma\sqrt{t}} < K$$
+
 $$i < \frac{n}{2} - \frac{\ln(\frac{S_0}{K})}{2\sigma\sqrt{t}}$$
 
 We then take the ceiling of these values to obtain an integer index, ensuring that only non-valuable outcomes are skipped.
@@ -126,15 +132,25 @@ We want to find the index at witch the payoff of current node is greater than th
 Let $S_{i,j}$ denote $S_0u^jd^{i-j}$, where $i$ is the step such that $i\in[0,n-1]$ and $j$ be a node at step $i$ such that $j \in [0, i]$.
 
 $$S_{i,j}-K>e^{-rt}(p(S_{i,j}u-K) + (1-p)(S_{i,j}d-K))$$
+
 $$S_{i,j}-K>e^{-rt}(pS_{i,j}u-pK + (1-p)S_{i,j}d-(1-p)K)$$
+
 $$S_{i,j}-K>e^{-rt}(pS_{i,j}u + (1-p)S_{i,j}d - (1-p+p)K)$$
+
 $$S_{i,j}-K>e^{-rt}(pS_{i,j}u + (1-p)S_{i,j}d - K)$$
+
 $$S_{i,j}-K>e^{-rt}(S_{i,j}(\frac{e^{rt}-d}{u-d}(u-d) + d) - K)$$
+
 $$S_{i,j}-K>e^{-rt}(S_{i,j}(e^{rt}-d + d) - K)$$
+
 $$S_{i,j}-K>e^{-rt}(S_{i,j}e^{rt} - K)$$
+
 $$S_{i,j}-K>e^{-rt}(S_{i,j}e^{rt} - K)$$
+
 $$S_{i,j} - K > S_{i,j} - Ke^{-rt}$$
+
 $$K < Ke^{-rt}$$
+
 $$1 \not< e^{-rt}$$
 
 This inequality does not hold, meaning that for any state, the intrinsic value is strictly less than the discounted expected value of the option at the next step. 
@@ -145,8 +161,11 @@ Thus we it is never optimal to exercise the American call early and we can calcu
 This relationship can also be derived from put-call parity.
 
 For **American puts** we can show the following:
+
 $$K - S_{i,j}>e^{-rt}(p(K - S_{i,j}u) + (1-p)(K - S_{i,j}d))$$
+
 That simplifies to:
+
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}(pu-(1-p)d))$$
 
 $$K - S_{i,j}>e^{-rt}(K-S_{i,j}(\frac{e^{rt}-d}{u-d}u+(1-\frac{e^{rt}-d}{u-d})d))$$
@@ -165,8 +184,8 @@ This means that the inequality can hold for American puts.
 
 In cases where full tree induction is unnecessary, the option price is computed as the discounted expected payoff (shown here for calls):
 
+$$f = e^{-rT} \sum_{j>\alpha}^{n} \binom{n}{j} p^{n-j} q^{j} \cdot (S_0u^{n-j}d^{j}-K)$$
 
-$$f = e^{-rT} \sum_{j>\alpha}^{n} \binom{n}{j} p^{n-j} q^{j} \cdot (S_0u^{n-j}d^{j}-K)$$ \
 where $\alpha$ is the previously calculated k-index.
 
 Direct computation of $\binom{n}{j}$ can cause integer overflow, so logarithms are used:
@@ -183,7 +202,7 @@ $\Gamma(x) = (x-1)!$, we use $n+1$ as input.
 
 Because payoffs are precomputed, the final price is:
 
-$$f=e^{-rT}\sum_{j>\alpha}^n\exp(p^*)*(\text{Payoff}_j)$$
+$$f=e^{-rT}\sum_{j}>\alpha}^{n}\exp(p^{*})*(\text{Payoff}_{j})$$
 
 This reduces the time complexity from $O(N^2)$ to $O(N)$.
 
