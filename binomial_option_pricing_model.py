@@ -223,10 +223,11 @@ if __name__ == "__main__":
         '''
 
         if not isinstance(time_to_convert, (int, float)):
-            raise TypeError(f"Expected int, float, but got {type(T).__name__}")
+            raise TypeError(f"Expected int, float, but got {type(time_to_convert).__name__}")
+
         if time_to_convert < 1e-3:
             return f"{time_to_convert * 1e6:.2f} μs"
-        if time_to_convert < 1:
+        elif time_to_convert < 1:
             return f"{time_to_convert * 1e3:.2f} ms"
         else:
             return f"{time_to_convert:.2f} s"
